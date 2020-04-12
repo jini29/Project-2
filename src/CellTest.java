@@ -14,13 +14,13 @@ public class CellTest {
 
 	@Test
 	public void GetstateTest() {
-		Cell c1 = new Cell(true);
-		boolean expect = true;
-		boolean actual = c1.getState();
+		Cell c1 = new Cell(CellState.ON);
+		CellState expect = CellState.ON;
+		CellState actual = c1.getState();
 		assertEquals(expect, actual);
 		
-		Cell c2 = new Cell(false);
-		expect = false;
+		Cell c2 = new Cell(OFF);
+		expect = CellState.OFF;
 		actual = c2.getState();
 		assertEquals(expect, actual);
 		
@@ -29,12 +29,12 @@ public class CellTest {
 	@Test 
 	public void toStringTest() {
 		Cell c1 = new Cell(true);
-		String expect = "true";
+		String expect = ".";
 		String actual = c1.toString();
 		assertEquals(expect, actual);
 		
 		Cell c2 = new Cell(false);
-		expect = "false";
+		expect = "o";
 		actual = c2.toString();
 		assertEquals(expect, actual);
 	}
