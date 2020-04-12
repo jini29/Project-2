@@ -19,7 +19,7 @@ public class CellTest {
 		CellState actual = c1.getState();
 		assertEquals(expect, actual);
 		
-		Cell c2 = new Cell(OFF);
+		Cell c2 = new Cell(CellState.OFF);
 		expect = CellState.OFF;
 		actual = c2.getState();
 		assertEquals(expect, actual);
@@ -28,12 +28,12 @@ public class CellTest {
 	
 	@Test 
 	public void toStringTest() {
-		Cell c1 = new Cell(true);
+		Cell c1 = new Cell(CellState.ON);
 		String expect = ".";
 		String actual = c1.toString();
 		assertEquals(expect, actual);
 		
-		Cell c2 = new Cell(false);
+		Cell c2 = new Cell(CellState.OFF);
 		expect = "o";
 		actual = c2.toString();
 		assertEquals(expect, actual);

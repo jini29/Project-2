@@ -3,30 +3,28 @@ public class Cell {
 	/**
 	 * stores the state of cell
 	 */
-	private boolean state;
+	private CellState state;
 	
 	/**
 	 * constructor with boolean argument creates cell with its state
 	 * @param state
 	 */
-	public Cell(boolean state) {
+	
+	public Cell() {
+		
+	}
+	public Cell(CellState state) {
 		this.state = state;
 	}
 	
-	/**
-	 * Set the state of the cell
-	 * @param state
-	 */
-	public void setState(boolean state) {
-		this.state = state;
-	}
+
 	
 	/**
 	 * get the state of cell
 	 * @return state
 	 */
 	
-	public boolean getState() {
+	public CellState getState() {
 		return this.state;
 	}
 	
@@ -36,12 +34,7 @@ public class Cell {
 	 */
 	@Override
 	public String toString() {
-		if(state == true) {
-			return "true";
-		}
-		else {
-			return "false";
-		}
+		return state.toString(); 
 	}
 	
 	
