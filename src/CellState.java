@@ -24,11 +24,11 @@ public enum CellState {
 	}
 	
 	public static CellState getState(char symbol) {
-		return null;
+		return SYMBOL_TO_STATE.get(symbol);
 	}
 	
 	@Override
 	public String toString() {
-		return null;
+		return Character.toString(symbol);
 	}
 }
