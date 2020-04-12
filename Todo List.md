@@ -22,16 +22,16 @@ The TotallisticRule will check the total number of cells in the On state on the 
 ## BoundaryConditions
 The boundary conditions governs the evolution of the first and last cells in a generation
 
-##CircularBoundaryConditions
+## CircularBoundaryConditions
 The CircularBoundaryConditions accounts cells from the another end as it neighbor
 
-##FixedBoundaryConditions
+## FixedBoundaryConditions
 The FixedBoundaryCOndition accounts there are infinite number of cells extending to the left and right.
 
-##Automaton
+## Automaton
 Most Automation code should remain same from project 1
 
-##AutomatonMeasurements
+## AutomatonMeasurements
 The AutomatonMeasurements calculate the quantities of how an automaton evolves by finding the hammingDistance and subruleCount
 
 ### Todo List
