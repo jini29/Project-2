@@ -20,7 +20,6 @@ public enum CellState {
 	private CellState(char symbol) {
 		this.symbol = symbol;
 		
-		
 	}
 	
 	public static CellState getState(char symbol) {
