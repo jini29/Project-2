@@ -30,6 +30,7 @@ public class FixedBoundaryConditionsTest {
 		assertEquals(expect,actual);
 	}
 	
+	@Test
 	public void GetNeighbortest() {
 		FixedBoundaryConditions f1= new FixedBoundaryConditions(CellState.ON, CellState.OFF); 
 		
@@ -60,7 +61,7 @@ public class FixedBoundaryConditionsTest {
 		assertEquals(expect,actual);
 		
 		
-		cellIdx = gen.size()-1;
+		cellIdx = 0;
 		offset = Integer.MAX_VALUE;
 		actual = f1.getNeighbor(cellIdx, offset, gen).getState();
 		expect = CellState.OFF;
@@ -92,7 +93,7 @@ public class FixedBoundaryConditionsTest {
 		assertEquals(expect,actual);
 		
 		
-		cellIdx = gen.size()-1;
+		cellIdx = 0;
 		offset = Integer.MAX_VALUE;
 		actual = f2.getNeighbor(cellIdx, offset, gen).getState();
 		expect = CellState.ON;
