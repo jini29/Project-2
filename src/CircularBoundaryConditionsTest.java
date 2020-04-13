@@ -15,25 +15,25 @@ public class CircularBoundaryConditionsTest {
 		
 		Cell actual = c.getNeighbor(cellIdx, offset, gen);
 		Cell expect = new Cell(CellState.ON);
-		assertEquals(actual, expect);
+		assertEquals(actual.toString(), expect.toString());
 		
 		cellIdx =3;
 		offset = -2;
 		actual = c.getNeighbor(cellIdx, offset, gen);
 		expect = new Cell(CellState.OFF);
-		assertEquals(actual, expect);
+		assertEquals(actual.toString(), expect.toString());
 		
 		cellIdx =0;
 		offset = -2;
 		actual = c.getNeighbor(cellIdx, offset, gen);
 		expect = new Cell(CellState.ON);
-		assertEquals(actual, expect);
+		assertEquals(actual.toString(), expect.toString());
 		
 		cellIdx =gen.size();
 		offset = 2;
 		actual = c.getNeighbor(cellIdx, offset, gen);
 		expect = new Cell(CellState.OFF);
-		assertEquals(actual, expect);
+		assertEquals(actual.toString(), expect.toString());
 		
 	}
 
