@@ -11,8 +11,10 @@ public class Cell {
 	 */
 	
 	public Cell() {
-		
+		state = CellState.OFF;
 	}
+	
+	
 	public Cell(CellState state) {
 		this.state = state;
 	}
