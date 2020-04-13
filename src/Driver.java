@@ -2,8 +2,8 @@ import java.io.IOException;
 
 public class Driver {
 
-	public static void main(String[] args) throws IOException {
-		Automaton automaton = new Automaton("rule22-63cells-input.txt");
+	public static void main(String[] args) throws IOException, InvalidRuleNumException {
+		/*Automaton automaton = new Automaton("rule22-63cells-input.txt");
 		Rule rule  = new Rule(22);
 		automaton.evolve(31);
 		System.out.println(automaton.toString());
@@ -14,5 +14,10 @@ public class Driver {
 		
 		System.out.println(rule.getBinary().charAt(7));
 		System.out.println(automaton.getTrueSymbol());
+		 
+		 */
+		
+		ElementaryRule er = new ElementaryRule(110);
+		System.out.print(er);
 	}
 }

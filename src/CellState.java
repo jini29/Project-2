@@ -1,8 +1,8 @@
 import java.util.HashMap;
 
 public enum CellState {
-	ON('.'),
-	OFF('o');
+	ON('O'),
+	OFF('.');
 	
 	private char symbol;
 	private static HashMap<Character, CellState> SYMBOL_TO_STATE = new HashMap<Character, CellState>() {
@@ -12,8 +12,8 @@ public enum CellState {
 		private static final long serialVersionUID = 1L;
 
 		{
-			put('.',ON);
-			put('o',OFF);
+			put('O',ON);
+			put('.',OFF);
 		}
 	};
 	

@@ -69,7 +69,7 @@ public String toString() {
 	// TODO Auto-generated method stub
 	
 	String output = "";
-	for (int i = subrule.size()-1; i <0; i--) {
+	for (int i = subrule.size()-1; i >=0; i--) {
 		for (int x =0; x < NUMNEIGHBORS; x++ ) {
 		output += subrule.get(i)[x].toString();
 		}
@@ -80,14 +80,14 @@ public String toString() {
 	
 	output += "\n";
 	
-	for (int i = subrule.size()-1; i <0; i--) {
+	for (int i = 0; i <subrule.size(); i++) {
 		if (super.getBinary().charAt(i) == '1')
-		output += " . ";
+		output += " O ";
 		else {
-			output += " o ";
+			output += " . ";
 		}
 		
-		if (i != 0) {
+		if (i != subrule.size()-1) {
 			output += " ";
 			}
 		

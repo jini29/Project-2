@@ -8,7 +8,7 @@ public class CircularBoundaryConditions implements BoundaryConditions{
 	public Cell getNeighbor(int cellIdx, int offset, Generation gen) {
 		// TODO Auto-generated method stub
 		int NeighborIdx = cellIdx + offset;
-		if (NeighborIdx > 0 && NeighborIdx < gen.size()) {
+		if (NeighborIdx >= 0 && NeighborIdx < gen.size()) {
 			return gen.getCell(NeighborIdx);
 		}
 		else if(NeighborIdx < 0){

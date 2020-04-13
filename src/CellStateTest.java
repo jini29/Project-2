@@ -6,11 +6,11 @@ public class CellStateTest {
 
 	@Test
 	public void getStateTest() {
-		CellState actual = CellState.getState('.');
+		CellState actual = CellState.getState('O');
 		CellState expect = CellState.ON;
 		assertEquals(expect,actual);
 		
-		actual = CellState.getState('o');
+		actual = CellState.getState('.');
 		expect = CellState.OFF;
 		assertEquals(expect,actual);
 	
@@ -19,11 +19,11 @@ public class CellStateTest {
 	@Test
 	public void toStringTest() {
 		String actual = CellState.ON.toString();
-		String expect = ".";
+		String expect = "O";
 		assertEquals(expect,actual);
 		
 		actual = CellState.OFF.toString();
-		expect = "o";
+		expect = ".";
 		assertEquals(expect,actual);
 	}
 
