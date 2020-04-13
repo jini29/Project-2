@@ -18,25 +18,27 @@ public abstract class Rule {
 	 * @return
 	 */
 	private String getBinary() {
-		String binary = "";
-		for(int i = 0; i < (8-Integer.toBinaryString(ruleNum).length()); i++) {
-			binary = binary + "0";
-		}
-		binary = binary + Integer.toBinaryString(ruleNum);
-		return binary;
+		
+		return Integer.toBinaryString(ruleNum);
 		
 	}
 	
 	public int getRuleNum() {
-		return 0;
+		return ruleNum;
 	}
 	
 	public Generation evolve(Generation gen, BoundaryConditions bc) {
-		return gen;
+		Cell[] newGen= new Cell[gen.size()];
+		
+		for (int i =0; i<gen.size(); i++) {
+			newGen[i] = evolve(getNeighborhood(i,gen,bc));
+		}
+		
+		return new Generation(newGen);
 	}
 	
 	public int getNumSubrules() {
-		return 0;
+		return getBinary().length();
 	}
 	
 	public abstract Cell[] getNeighborhood(int CellIdx, Generation gen, BoundaryConditions bc);
