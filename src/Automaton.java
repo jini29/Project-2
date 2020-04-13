@@ -7,37 +7,63 @@ import java.util.*;
 
 
 public class Automaton {
-	/**
-	 * char stores trueSymbol with default being '1'
-	 */
-	private char trueSymbol = '1';
-	/**
-	 * char stores falseSymbol with default being '0'
-	 */
-	private char falseSymbol = '0';
 	
-	/**
-	 * int stores ruleNum 
-	 */
-	private int ruleNum;
+	private Rule rule;
 	
-	/**
-	 * ArrayList stores cells
-	 */
+	private List<Generation> generations;
+	
+	
+	private BoundaryConditions bc;
+	
+	public Automaton(Rule rule, Generation init, BoundaryConditions bc) {
+		generations = new ArrayList<Generation>();
+		this.rule = rule;
+		this.bc = bc;
+		generations.add(init);
+	}
+	
+	public void evolve(int numSteps) {
+		for (int i = 0; i < numSteps; i++) {
+			generations.add(rule.evolve(generations.get(i), bc));
+		}
+	}
+	
+	public int getTotalSteps() {
+		return generations.size()-1;
+	}
+	
+	public Generation getGeneration(int stepnum) throws InvalidStepNumException {
+		if (stepnum<0) {
+			throw new InvalidStepNumException();
+		}
+		
+		if (getTotalSteps() < stepnum) {
+			evolve(stepnum - getTotalSteps());
+		}
+		return generations.get(stepnum);
+	}
+	
+	@Override
+	public String toString() {
+		return generations.get(generations.size()-1).toString();
+	}
+	
+	public String getHistory() {
+		String toString = "";
+		for (int i = 0; i <generations.size()-1; i++) {
+			toString = toString + generations.get(i).toString() + "\n";
+		}
+		toString =toString + generations.get((generations.size()-1)).toString();
+		return toString;
+	}
+
+	/*
 	ArrayList<Cell> cells= new ArrayList<Cell>();
 	
-	/**
-	 * ArrayList stores generations
-	 */
+	
 	ArrayList<Generation> generations = new ArrayList<Generation>(); 
 	
-	/**
-	 * constructor takes int ruleNum and boolean array
-	 * Stores boolean array to cells ArrayList with each boolean being the state of each cell
-	 * adds the ArrayList of cells to as the first generation to the generation ArrayList
-	 * @param ruleNum
-	 * @param initState
-	 */
+	
 	public Automaton(int ruleNum, boolean[] initState) {
 		this.ruleNum =ruleNum;
 		
@@ -47,14 +73,7 @@ public class Automaton {
 		generations.add(new Generation(cells));
 	}
 	
-	/**
-	 * constructor takes the string filename
-	 * open the file with the filename and takes the first line as the rule number
-	 * takes the second as the true and false symbol
-	 * takes the third line as the boolean array
-	 * @param filename
-	 * @throws IOException
-	 */
+
 	public Automaton(String filename) throws IOException {
 		 BufferedReader reader = new BufferedReader(new FileReader(filename));
 		  String line = reader.readLine();
@@ -81,15 +100,7 @@ public class Automaton {
 		
 	}
 	
-	/**
-	 * evolve based on the first generation with numSteps giving by the user
-	 * passes the left state, middle state, right state of each cells on the generation to checkrules 
-	 * which determines the state of next generation
-	 * if the cells is the the left end, then the left cells state will the be cells on the right end
-	 * if the cells is the the right end, then the left cells state will the be cells on the left end
-	 * passes the cells on the next generation to Arraylist generations
-	 * @param numSteps
-	 */
+
 	public void evolve(int numSteps) {
 		
 		Rule rule = new Rule(ruleNum);
@@ -141,20 +152,12 @@ public class Automaton {
 		}
 	}
 		
-	
-	/**
-	 * get the totalSteop by subtract the size of generations by 1
-	 * @return
-	 */
+
 	public int getTotalSteps() {
 		return (generations.size()-1);
 	}
 	
-	/**
-	 * gets the boolean array of the state of each cells on a specific generation 
-	 * @param stepNum
-	 * @return
-	 */
+	
 	public boolean[] getState(int stepNum){
 		boolean[] states = new boolean[generations.get(stepNum).getCellNum()];
 		for (int i = 0; i < cells.size(); i ++) {
@@ -163,11 +166,7 @@ public class Automaton {
 		return states;
 	}
 	
-	/**
-	 * gets the String of the state of each cells on a specific generation with correct true and false symbol
-	 * @param stepNum
-	 * @return
-	 */
+	
 	public String getStateString (int stepNum) {
 		String stateString = "";
 		for (int i = 0; i < cells.size(); i ++) {
@@ -182,11 +181,7 @@ public class Automaton {
 		return stateString;
 	}
 	
-	/**
-	 * save the result on a file
-	 * @param filename
-	 * @throws IOException
-	 */
+	
 	public void save(String filename) throws IOException {
 		 BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
 		 
@@ -195,9 +190,7 @@ public class Automaton {
 		 writer.close();
 	}
 	
-	/**
-	 * override the toString method to get the stateString on each generation and return the stateString of all generations
-	 */
+	
 	@Override
 	public String toString() {
 		String toString = "";
@@ -209,43 +202,30 @@ public class Automaton {
 		
 	}
 	
-	/**
-	 *  get the ruleNum
-	 */
+	
 	public int getRuleNum() {
 		return ruleNum;
 	}
 	
-	/**
-	 * sets the trueSymbol
-	 * @param symbol
-	 */
+
 	public void setTrueSymbol(char symbol) {
 		trueSymbol = symbol;
 	}
 	
-	/**
-	 * get the trueSymbol
-	 * @return
-	 */
+	
 	public char getTrueSymbol() {
 		return trueSymbol;
 	}
 	
-	/**
-	 * set the FalseSymbol
-	 * @param symbol
-	 */
+
 	public void setFalseSymbol(char symbol) {
 		falseSymbol = symbol;
 	}
 	
-	/**
-	 * get the FalseSymbol
-	 * @return
-	 */
+	
 	public char getFalseSymbol() {
 		return falseSymbol;
 	}
+	*/
 	
 }
