@@ -17,9 +17,9 @@ public abstract class Rule {
 	 *Get the binary string of with given rule number. Adds 0 in front of the string if the string does not have 8 character.
 	 * @return
 	 */
-	protected String getBinary() {
+	protected String getBinary(int numSubrule) {
 		String binary = "";
-		for(int i = 0; i < (8-Integer.toBinaryString(ruleNum).length()); i++) {
+		for(int i = 0; i < (numSubrule-Integer.toBinaryString(ruleNum).length()); i++) {
 			binary = binary + "0";
 		}
 		return binary+Integer.toBinaryString(ruleNum);
@@ -41,7 +41,7 @@ public abstract class Rule {
 	}
 	
 	public int getNumSubrules() {
-		return getBinary().length();
+		return getBinary(8).length();
 	}
 	
 	public abstract Cell[] getNeighborhood(int CellIdx, Generation gen, BoundaryConditions bc);

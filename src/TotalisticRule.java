@@ -38,7 +38,7 @@ public class TotalisticRule extends Rule{
 			
 		}
 		
-		if (super.getBinary().charAt(totalOn) == '1') {
+		if (super.getBinary(NUMSUBRULE).charAt((super.getBinary(NUMSUBRULE).length()-totalOn)-1) == '1') {
 			return new EvolvedCell(CellState.ON,totalOn);
 		}
 		
@@ -59,7 +59,7 @@ public class TotalisticRule extends Rule{
 		output += "\n";
 		
 		for (int i = 0; i <NUMSUBRULE; i++) {
-			if (super.getBinary().charAt(i) == '1')
+			if (super.getBinary(NUMSUBRULE).charAt(i) == '1')
 			output += "O";
 			else {
 				output += ".";

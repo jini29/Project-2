@@ -58,7 +58,7 @@ public EvolvedCell evolve(Cell[] neighborhood) {
 		}
 	}
 	
-	if (super.getBinary().charAt(subRuleNum) == '1') {
+	if (super.getBinary(NUMSUBRULE).charAt(subRuleNum) == '1') {
 		return new EvolvedCell(CellState.ON, subRuleNum);
 	}
 	return new EvolvedCell(CellState.OFF, subRuleNum);
@@ -81,7 +81,7 @@ public String toString() {
 	output += "\n";
 	
 	for (int i = 0; i <subrule.size(); i++) {
-		if (super.getBinary().charAt(i) == '1')
+		if (super.getBinary(NUMSUBRULE).charAt(i) == '1')
 		output += " O ";
 		else {
 			output += " . ";
