@@ -16,7 +16,7 @@ public class GenerationTest {
 		Generation g2 = new Generation(Cells);
 		
 		String states = ".o.o.o.o";
-		Generation g3 = new Generation(string);
+		Generation g3 = new Generation(states);
 	
 	@Test
 	public void sizeTest() {
@@ -35,23 +35,23 @@ public class GenerationTest {
 	@Test
 	public void getCellTest() {
 		CellState expect = CellState.OFF;
-		CellState actual = g1.getCell(2).getState();
+		CellState actual = g1.getCell(1).getState();
+		assertEquals(expect,actual);
+		
+		actual = g2.getCell(1).getState();
+		assertEquals(expect,actual);
+	
+		actual = g3.getCell(1).getState();
+		assertEquals(expect,actual);
+		
+		expect = CellState.ON;
+		actual = g1.getCell(2).getState();
 		assertEquals(expect,actual);
 		
 		actual = g2.getCell(2).getState();
 		assertEquals(expect,actual);
-	
+		
 		actual = g3.getCell(2).getState();
-		assertEquals(expect,actual);
-		
-		expect = CellState.ON;
-		actual = g1.getCell(3).getState();
-		assertEquals(expect,actual);
-		
-		actual = g2.getCell(3).getState();
-		assertEquals(expect,actual);
-		
-		actual = g3.getCell(3).getState();
 		assertEquals(expect,actual);
 	}
 	

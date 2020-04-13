@@ -1,20 +1,32 @@
-import java.util.ArrayList;
+
 
 
 public class Generation {
 	/**
 	 * stores an ArrayList of cells as a generation
 	 */
-	ArrayList<Cell> generation= new ArrayList<Cell>();
+	private Cell[] cells;
 	
 	/**
 	 * take an ArrayList of cells and store it as a generation
 	 * @param cells
 	 */
-	public Generation(ArrayList<Cell> cells) {
-		for (int i = 0; i < cells.size(); i++) {
-			generation.add(cells.get(i));
+	
+	public Generation(CellState[] states) {
+		this.cells = new Cell[states.length];
+		for (int i = 0; i < cells.length; i++) {
+			cells[i] = new Cell(states[i]);
 		}
+	}
+	
+	public Generation(String states) {
+		this.cells = new Cell[states.length()];
+		for (int i = 0; i < cells.length; i++) {
+			cells[i] = new Cell(CellState.getState(states.charAt(i)));
+		}
+	}
+	public Generation(Cell[] cells) {
+		this.cells =cells;
 	}
 	
 	/**
@@ -23,15 +35,24 @@ public class Generation {
 	 * @return
 	 */
 	public Cell getCell(int index) {
-		return new Cell(generation.get(index).getState());
+		return new Cell(cells[index].getState());
 	}
 	
 	/**
 	 * gets the total number of cells in the generation
 	 * @return
 	 */
-	public int getCellNum() {
-		return generation.size();
+	public int size() {
+		return cells.length;
+	}
+	
+	@Override
+	public String toString() {
+		String output ="";
+		for (int i =0; i < cells.length; i++) {
+			output += cells[i].toString();
+		}
+		return output;
 	}
 	
 	
