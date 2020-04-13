@@ -17,9 +17,12 @@ public abstract class Rule {
 	 *Get the binary string of with given rule number. Adds 0 in front of the string if the string does not have 8 character.
 	 * @return
 	 */
-	private String getBinary() {
-		
-		return Integer.toBinaryString(ruleNum);
+	protected String getBinary() {
+		String binary = "";
+		for(int i = 0; i < (8-Integer.toBinaryString(ruleNum).length()); i++) {
+			binary = binary + "0";
+		}
+		return binary+Integer.toBinaryString(ruleNum);
 		
 	}
 	
