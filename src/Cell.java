@@ -36,7 +36,7 @@ public class Cell {
 	 */
 	@Override
 	public String toString() {
-		return state.toString(); 
+		return this.state.toString(); 
 	}
 	
 	

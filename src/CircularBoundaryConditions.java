@@ -15,7 +15,7 @@ public class CircularBoundaryConditions implements BoundaryConditions{
 			return gen.getCell(gen.size()+NeighborIdx);
 		}
 		else {
-			return gen.getCell(NeighborIdx-gen.size()-1);
+			return gen.getCell(NeighborIdx-gen.size());
 		}
 	}
 
