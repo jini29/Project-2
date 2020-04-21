@@ -30,7 +30,7 @@ public class CircularBoundaryConditionsTest {
 		assertEquals(expect.toString(), actual.toString());
 		
 		cellIdx =gen.size()-1;
-		offset = 2;
+		offset = 10;
 		actual = c.getNeighbor(cellIdx, offset, gen);
 		expect = new Cell(CellState.ON);
 		assertEquals(expect.toString(), actual.toString());
