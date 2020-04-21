@@ -11,7 +11,7 @@ public class TotalisticRule extends Rule{
 		
 	}
 	
-	public int getNumSubRules() {
+	public int getNumSubrules() {
 		return NUMSUBRULE;
 	}
 	
