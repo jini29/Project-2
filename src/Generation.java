@@ -22,11 +22,21 @@ public class Generation {
 	public Generation(String states) {
 		this.cells = new Cell[states.length()];
 		for (int i = 0; i < cells.length; i++) {
-			cells[i] = new Cell(CellState.getState(states.charAt(i)));
+			if(CellState.getState(states.charAt(i)) == null) {
+				throw new IllegalArgumentException();
+			}
+			else {
+				
+				cells[i] = new Cell(CellState.getState(states.charAt(i)));
+			}
 		}
 	}
 	public Generation(Cell[] cells) {
-		this.cells =cells;
+		this.cells = new Cell[cells.length];
+		for (int i = 0; i < cells.length; i++) {
+			this.cells[i] = cells[i];
+		}
+	
 	}
 	
 	/**
@@ -35,7 +45,7 @@ public class Generation {
 	 * @return
 	 */
 	public Cell getCell(int index) {
-		return new Cell(cells[index].getState());
+		return cells[index];
 	}
 	
 	/**
