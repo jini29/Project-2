@@ -31,7 +31,7 @@ public abstract class Rule {
 	}
 	
 	public Generation evolve(Generation gen, BoundaryConditions bc) {
-		Cell[] newGen= new Cell[gen.size()];
+		EvolvedCell[] newGen= new EvolvedCell[gen.size()];
 		
 		for (int i =0; i<gen.size(); i++) {
 			newGen[i] = evolve(getNeighborhood(i,gen,bc));
@@ -41,7 +41,7 @@ public abstract class Rule {
 	}
 	
 	public int getNumSubrules() {
-		return getBinary(8).length();
+		return Integer.toBinaryString(ruleNum).length();
 	}
 	
 	public abstract Cell[] getNeighborhood(int CellIdx, Generation gen, BoundaryConditions bc);
