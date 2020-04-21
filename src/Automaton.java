@@ -1,8 +1,10 @@
+/*
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+*/
 import java.util.*;
 
 
@@ -23,24 +25,39 @@ public class Automaton {
 	}
 	
 	public void evolve(int numSteps) {
-		for (int i = 0; i < numSteps; i++) {
+		int currentstep = getTotalSteps();
+		for (int i = getTotalSteps(); i < (currentstep+numSteps); i++) {
 			generations.add(rule.evolve(generations.get(i), bc));
 		}
 	}
 	
+	public Rule getRule() {
+		return this.rule;
+	}
 	public int getTotalSteps() {
 		return generations.size()-1;
 	}
 	
 	public Generation getGeneration(int stepnum) throws InvalidStepNumException {
+		
 		if (stepnum<0) {
 			throw new InvalidStepNumException();
 		}
 		
 		if (getTotalSteps() < stepnum) {
-			evolve(stepnum - getTotalSteps());
+			evolve(stepnum-getTotalSteps());
 		}
-		return generations.get(stepnum);
+		
+		Cell[] cells = new Cell[generations.get(stepnum).size()];
+ 		for(int i = 0; i <generations.get(stepnum).size(); i++) {
+ 			cells[i] = generations.get(stepnum).getCell(i);
+		}
+		return new Generation(cells);
+		
+	}
+	
+	public BoundaryConditions getBoundaryConditions() {
+		return this.bc;
 	}
 	
 	@Override
