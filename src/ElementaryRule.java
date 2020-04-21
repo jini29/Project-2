@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -5,21 +6,21 @@ public class ElementaryRule extends Rule {
 
 	private final static int NUMSUBRULE = 8;
 	private final static int NUMNEIGHBORS =3;
-	private static HashMap<Integer, Cell[]> subrule = new HashMap<Integer, Cell[]>() {
+	private static HashMap<Integer, CellState[]> subrule = new HashMap<Integer, CellState[]>() {
 		/**
 		 * 
 		 */
 		private static final long serialVersionUID = 1L;
 
 		{
-			put(0,new Cell[] {new Cell(CellState.OFF),new Cell(CellState.OFF),new Cell(CellState.OFF)});
-			put(1,new Cell[] {new Cell(CellState.OFF),new Cell(CellState.OFF),new Cell(CellState.ON)});
-			put(2,new Cell[] {new Cell(CellState.OFF),new Cell(CellState.ON),new Cell(CellState.OFF)});
-			put(3,new Cell[] {new Cell(CellState.OFF),new Cell(CellState.ON),new Cell(CellState.ON)});
-			put(4,new Cell[] {new Cell(CellState.ON),new Cell(CellState.OFF),new Cell(CellState.OFF)});
-			put(5,new Cell[] {new Cell(CellState.ON),new Cell(CellState.OFF),new Cell(CellState.ON)});
-			put(6,new Cell[] {new Cell(CellState.ON),new Cell(CellState.ON),new Cell(CellState.OFF)});
-			put(7,new Cell[] {new Cell(CellState.ON),new Cell(CellState.ON),new Cell(CellState.ON)});
+			put(0,new CellState[] {CellState.OFF,CellState.OFF,CellState.OFF});
+			put(1,new CellState[] {CellState.OFF,CellState.OFF,CellState.ON});
+			put(2,new CellState[] {CellState.OFF,CellState.ON,CellState.OFF});
+			put(3,new CellState[] {CellState.OFF,CellState.ON,CellState.ON});
+			put(4,new CellState[] {CellState.ON,CellState.OFF,CellState.OFF});
+			put(5,new CellState[] {CellState.ON,CellState.OFF,CellState.ON});
+			put(6,new CellState[] {CellState.ON,CellState.ON,CellState.OFF});
+			put(7,new CellState[] {CellState.ON,CellState.ON,CellState.ON});
 		}
 	};
 	
@@ -31,7 +32,7 @@ public class ElementaryRule extends Rule {
 		
 	}
 	
-	public int getNumSubRules() {
+	public int getNumSubrules() {
 		return NUMSUBRULE;
 	}
 	
@@ -41,7 +42,7 @@ public Cell[] getNeighborhood(int CellIdx, Generation gen, BoundaryConditions bc
 	// TODO Auto-generated method stub
 	Cell[] neighborhood = new Cell[NUMNEIGHBORS];
 	int offset = -1;
-	for (int i =0; i < neighborhood.length; i++) {
+	for (int i =0; i < NUMNEIGHBORS; i++) {
 		neighborhood[i] = bc.getNeighbor(CellIdx, offset, gen);
 		++offset;
 	}
@@ -53,12 +54,14 @@ public EvolvedCell evolve(Cell[] neighborhood) {
 	// TODO Auto-generated method stub
 	int subRuleNum =0;
 	for (int i =0; i < NUMSUBRULE; i++) {
-		if(subrule.get(i).equals(neighborhood)) {
+		if(subrule.get(i)[0].equals(neighborhood[0].getState())
+			&&	subrule.get(i)[1].equals(neighborhood[1].getState())
+			&& subrule.get(i)[2].equals(neighborhood[2].getState())) {
 			subRuleNum = i;
 		}
 	}
 	
-	if (super.getBinary(NUMSUBRULE).charAt(subRuleNum) == '1') {
+	if (super.getBinary(NUMSUBRULE).charAt(7-subRuleNum) == '1') {
 		return new EvolvedCell(CellState.ON, subRuleNum);
 	}
 	return new EvolvedCell(CellState.OFF, subRuleNum);
