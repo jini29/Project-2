@@ -1,13 +1,14 @@
 
 public class EvolvedCell extends Cell{
-private int subruleNum;
 	
-public EvolvedCell(CellState state, int subruleNum) {
+	private int subruleNum;
+	
+	public EvolvedCell(CellState state, int subruleNum) {
 	super(state);
 	this.subruleNum = subruleNum;
-}
+	}
 
-public int getSubruleNum() {
+	public int getSubruleNum() {
 	return subruleNum;
-}
+	}
 }
